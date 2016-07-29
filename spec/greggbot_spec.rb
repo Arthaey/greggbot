@@ -1,5 +1,4 @@
 RSpec.describe Greggbot do
-
   subject(:bot) { Greggbot.new("config.yaml.example") }
 
   context "with config file" do
@@ -15,5 +14,4 @@ RSpec.describe Greggbot do
     it "should succeed with good credentials"
     it "should fail with bad credentials"
   end
-
 end
