@@ -8,6 +8,10 @@ RSpec.describe Greggbot do
       expect(bot.consumer_key).to    eq("CONSUMER API KEY")
       expect(bot.consumer_secret).to eq("CONSUMER API SECRET")
     end
+
+    it "should set the logger level" do
+      expect(bot.logger.level).to eq(Logger::DEBUG)
+    end
   end
 
   context "when logging in" do

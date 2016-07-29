@@ -1,13 +1,9 @@
-require "logger"
 require "yaml"
 
+require "logging"
+
 class Greggbot
-  LOGGER = Logger.new($stdout)
-  LOGGER.level = :debug
-  LOGGER.formatter = proc do |severity, _datetime, _progname, msg|
-    prefix = "[#{severity}]"
-    "#{prefix.ljust(8)} #{msg}\n"
-  end
+	include Logging
 
   attr_reader :access_token, :access_secret
   attr_reader :consumer_key, :consumer_secret
@@ -20,11 +16,11 @@ class Greggbot
     @consumer_key    = config[:consumer_key]
     @consumer_secret = config[:consumer_secret]
 
-    # TODO: set logger level in config file
+    logger.level = config[:log_level] || "INFO"
   end
 
   def run
-    LOGGER.info("Started at #{now}.")
+    logger.info("Started at #{now}.")
 
     # log in
     # get list
@@ -35,7 +31,7 @@ class Greggbot
     #  - save image
     #  - public-reply to tweet with the image
 
-    LOGGER.info("Finished at #{now}.")
+    logger.info("Finished at #{now}.")
   end
 
   private
