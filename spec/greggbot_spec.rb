@@ -10,4 +10,10 @@ RSpec.describe Greggbot do
       expect(bot.consumer_secret).to eq("CONSUMER API SECRET")
     end
   end
+
+  context "when logging in" do
+    it "should succeed with good credentials"
+    it "should fail with bad credentials"
+  end
+
 end
