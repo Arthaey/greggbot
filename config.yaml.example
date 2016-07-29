@@ -1,4 +1,4 @@
-consumer_key:    "CONSUMER API KEY"
-consumer_secret: "CONSUMER API SECRET"
-access_token:    "ACCESS TOKEN"
-access_secret:   "ACCESS TOKEN SECRET"
+:access_token:    "ACCESS TOKEN"
+:access_secret:   "ACCESS TOKEN SECRET"
+:consumer_key:    "CONSUMER API KEY"
+:consumer_secret: "CONSUMER API SECRET"
