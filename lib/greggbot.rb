@@ -1,11 +1,10 @@
-require 'logger'
-require 'yaml'
+require "logger"
+require "yaml"
 
 class Greggbot
-
   LOGGER = Logger.new($stdout)
   LOGGER.level = :debug
-  LOGGER.formatter = proc do |severity, datetime, progname, msg|
+  LOGGER.formatter = proc do |severity, _datetime, _progname, msg|
     prefix = "[#{severity}]"
     "#{prefix.ljust(8)} #{msg}\n"
   end
@@ -32,9 +31,9 @@ class Greggbot
     # get new tweets from list
     # limit to N tweets
     # for each tweet:
-      # send text to generator
-      # save image
-      # public-reply to tweet with the image
+    #  - send text to generator
+    #  - save image
+    #  - public-reply to tweet with the image
 
     LOGGER.info("Finished at #{now}.")
   end
@@ -44,5 +43,4 @@ class Greggbot
   def now
     Time.now.strftime("%F %T %z")
   end
-
 end
