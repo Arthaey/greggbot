@@ -1,3 +1,6 @@
+## Check in *.yaml.example files but NOT the real configs.
+*.yaml
+
 *.gem
 *.rbc
 /.config
