@@ -15,6 +15,10 @@ RSpec.describe Greggbot do
     it "should set the logger level" do
       expect(bot.logger.level).to eq(Logger::DEBUG)
     end
+
+    it "should set the source list name" do
+      expect(bot.source_list_name).to eq("Sources")
+    end
   end
 
   context "when logging in" do
@@ -26,6 +30,14 @@ RSpec.describe Greggbot do
     it "should fail with bad credentials" do
       bot.login!
       expect { bot.twitter.user }.to raise_error(Twitter::Error::Unauthorized)
+    end
+  end
+
+  context "when getting tweets from the list" do
+    it "should find tweets" do
+      real_bot.login!
+      # TODO: Mock Twitter client, so returned data can be controlled.
+      expect(real_bot.tweets.count).to be > 0
     end
   end
 end
