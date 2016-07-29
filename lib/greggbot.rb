@@ -1,3 +1,4 @@
+require "twitter"
 require "yaml"
 
 require "logging"
@@ -7,6 +8,8 @@ class Greggbot
 
   attr_reader :access_token, :access_secret
   attr_reader :consumer_key, :consumer_secret
+
+  attr_reader :twitter
 
   def initialize(config_filename)
     config = YAML.load_file(config_filename)
@@ -20,9 +23,11 @@ class Greggbot
   end
 
   def run
-    logger.info("Started at #{now}.")
+    logger.debug("Started at #{now}.")
 
-    # log in
+    login!
+
+    # TODO:
     # get list
     # get new tweets from list
     # limit to N tweets
@@ -31,7 +36,17 @@ class Greggbot
     #  - save image
     #  - public-reply to tweet with the image
 
-    logger.info("Finished at #{now}.")
+    logger.debug("Finished at #{now}.")
+    logger.info("Done.")
+  end
+
+  def login!
+    @twitter = Twitter::REST::Client.new do |config|
+      config.consumer_key        = @consumer_key
+      config.consumer_secret     = @consumer_secret
+      config.access_token        = @access_token
+      config.access_token_secret = @access_secret
+    end
   end
 
   private

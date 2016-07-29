@@ -1,5 +1,8 @@
 RSpec.describe Greggbot do
+  before(:all) { $stderr.reopen(File.new("/dev/null", "w")) }
+
   subject(:bot) { Greggbot.new("config.yaml.example") }
+  subject(:real_bot) { Greggbot.new("config.yaml") } # TODO: create test account
 
   context "with config file" do
     it "should read secret keys & tokens" do
@@ -15,7 +18,14 @@ RSpec.describe Greggbot do
   end
 
   context "when logging in" do
-    it "should succeed with good credentials"
-    it "should fail with bad credentials"
+    it "should succeed with good credentials" do
+      real_bot.login!
+      expect(real_bot.twitter.user).to_not be_nil
+    end
+
+    it "should fail with bad credentials" do
+      bot.login!
+      expect { bot.twitter.user }.to raise_error(Twitter::Error::Unauthorized)
+    end
   end
 end

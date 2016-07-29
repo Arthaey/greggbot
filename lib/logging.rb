@@ -7,7 +7,7 @@ module Logging
   end
 
   def self.logger
-    @logger ||= Logger.new($stdout)
+    @logger ||= Logger.new($stderr)
 
     @logger.formatter = proc do |severity, _datetime, _progname, msg|
       prefix = "[#{severity}]"
