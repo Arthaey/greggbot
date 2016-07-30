@@ -35,6 +35,8 @@ class Greggbot
       # public-reply to tweet with the image
     end
 
+    # delete tmp images
+
     logger.debug("Finished at #{now}.")
     logger.info("Done.")
   end
