@@ -17,11 +17,16 @@ class Generator
     "#{URL}#{escaped_text}"
   end
 
+  def self.image_basename(text)
+    text.strip.gsub(/[[:punct:]]/, "").gsub(/\s+/, "_").downcase
+  end
+
   def self.image_path(text)
     File.join(Dir.tmpdir, "GREGGBOT_#{image_basename(text)}.gif")
   end
 
-  def self.image_basename(text)
-    text.strip.gsub(/[[:punct:]]/, "").gsub(/\s+/, "_").downcase
+  def self.delete_images!
+    tmp_files = File.join(Dir.tmpdir, "GREGGBOT_*.gif")
+    File.delete(*Dir.glob(tmp_files))
   end
 end

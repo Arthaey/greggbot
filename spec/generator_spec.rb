@@ -1,3 +1,5 @@
+require "fileutils"
+
 def expected_filename(actual_filename)
   File.join(File.dirname(__FILE__), "fixtures/EXPECTED_#{actual_filename}.gif")
 end
@@ -5,10 +7,7 @@ end
 RSpec.describe Generator do
   before(:all) { $stderr.reopen(File.new("/dev/null", "w")) }
 
-  after(:all) do
-    tmp_files = File.join(Dir.tmpdir, "GREGGBOT_*.gif")
-    File.delete(*Dir.glob(tmp_files))
-  end
+  after(:all) { Generator.delete_images! }
 
   context "when constructing image filenames" do
     it "should remove all whitespace & punctuation" do
@@ -37,6 +36,14 @@ RSpec.describe Generator do
     it "should fetch an image for multiple words" do
       path = Generator.fetch_image!("Hello, world!")
       expect(path).to be_same_file_as(expected_filename("hello_world"))
+    end
+
+    it "should delete all images" do
+      path = Generator.image_path("empty")
+      FileUtils.touch(path)
+      expect(File.exist?(path)).to be true
+      Generator.delete_images!
+      expect(File.exist?(path)).to be false
     end
   end
 end
