@@ -4,7 +4,7 @@ require "yaml"
 require "logging"
 
 class Greggbot
-	include Logging
+  include Logging
 
   attr_reader :access_token, :access_secret
   attr_reader :consumer_key, :consumer_secret
@@ -50,7 +50,7 @@ class Greggbot
 
   def tweets
     # get new tweets from list
-    @twitter.list_timeline(@source_list_name, {count: 2})
+    @twitter.list_timeline(@source_list_name, count: 2)
   end
 
   private

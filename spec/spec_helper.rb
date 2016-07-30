@@ -1,9 +1,9 @@
 dirs = [
-	"../lib/*.rb",
-	"support/**/*.rb",
+  "../lib/*.rb",
+  "support/**/*.rb",
 ]
 dirs.each do |dir|
-	Dir[File.join(File.dirname(__FILE__), dir)].each { |f| require f }
+  Dir[File.join(File.dirname(__FILE__), dir)].each { |f| require f }
 end
 
 # rubocop:disable all

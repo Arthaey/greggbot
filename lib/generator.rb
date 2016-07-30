@@ -4,7 +4,8 @@ require "mechanize"
 class Generator
   AGENT = Mechanize.new
 
-  URL = "http://steno.tu-clausthal.de/Gregg.php?DIR=Gregg&Proof=0&Scherung=22.5&Tilt=0.0&Input="
+  URL = "http://steno.tu-clausthal.de/Gregg.php" +
+        "?DIR=Gregg&Proof=0&Scherung=22.5&Tilt=0.0&Input=".freeze
 
   def self.fetch_image!(text)
     image = AGENT.get(url(text)).image_with(src: /^catgif.php/)
@@ -13,7 +14,7 @@ class Generator
 
   def self.url(text)
     escaped_text = ERB::Util.url_encode(text)
-    url = "#{URL}#{escaped_text}"
+    "#{URL}#{escaped_text}"
   end
 
   def self.image_path(text)

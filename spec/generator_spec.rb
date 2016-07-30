@@ -1,5 +1,5 @@
 def expected_filename(actual_filename)
-	File.join(File.dirname(__FILE__), "fixtures/EXPECTED_#{actual_filename}.gif")
+  File.join(File.dirname(__FILE__), "fixtures/EXPECTED_#{actual_filename}.gif")
 end
 
 RSpec.describe Generator do
