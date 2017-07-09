@@ -51,8 +51,8 @@ class Greggbot
   end
 
   def tweets
-    # get new tweets from list
-    @twitter.list_timeline(@source_list_name, count: 2)
+    # TODO: restrict to only *new* tweets, since last run.
+    @twitter.list_timeline(@source_list_name, count: 1)
   end
 
   private

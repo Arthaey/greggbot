@@ -5,7 +5,10 @@ def expected_filename(actual_filename)
 end
 
 RSpec.describe Generator do
-  before(:all) { $stderr.reopen(File.new("/dev/null", "w")) }
+  before(:all) do
+    $stderr.reopen(File.new("/dev/null", "w"))
+    FakeWeb.allow_net_connect = %r"http://steno\.tu-clausthal\.de"
+  end
 
   after(:all) { Generator.delete_images! }
 
